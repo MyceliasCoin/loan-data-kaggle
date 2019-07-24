@@ -130,6 +130,9 @@ Then [SSH into the instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide
 	# log in as default postgres user
 	sudo -u postgres -i
 	
+It is recommended to create a separate user instead of leveraging the existing 'postgres' superuser.
+Guide for creating a separate user can be found [here](https://chartio.com/resources/tutorials/how-to-change-a-user-to-superuser-in-postgresql/), but for simplicity we will work with the 'postgres' superuser.
+	
 	# change default postgres user password
 	psql ALTER USER postgres PASSWORD 'myPassword';
 	
@@ -137,7 +140,7 @@ All configuration files are stored here:
 
     /etc/postgresql/10/main
     
-The `postgresql.conf` and `pga_hba.conf` files are the most relevant for configuring a database.
+The `postgresql.conf` and `pg_hba.conf` files are the most relevant for configuring a database.
 
     #postgresql.conf
     #listen_addresses = 'localhost' # what IP address(es) to listen on;

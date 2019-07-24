@@ -85,6 +85,7 @@ The ETL data pipeline consists of multiple steps from storage of raw csv files t
 ### Raw CSV
 
 Inputs to the pipeline are in the form of standalone csv files.
+Each csv file is assumed to have consistent columnar format and type.
 
 ### AWS S3
 

@@ -78,9 +78,38 @@ Note here that Florida bucks the trend as it has average state income (73k) clos
 
 ## Architecture
 
----WILL REPLACE IMAGE BELOW---
+The ETL data pipeline consists of multiple steps from storage of raw csv files to final write out into a database storage system.
 
-![Image of Pipeline](images/razer.png)
+### Raw CSV
+
+Inputs to the pipeline are in the form of standalone csv files.
+
+### AWS S3
+
+The pipeline must be able to process the existing large `loan.csv` file in addition to any "new" csv files.
+We will leverage AWS S3 as a centralized data lake for warehousing the existing `loan.csv` file in addition to any "new" csv files.
+
+### Python
+
+The pipeline will then leverage Python to clean up + process csv files and write out into a database storage system (PostgreSQL).
+
+__Future Consideration__: if the size and number of new csv files exceeds memory / computing constraints for a single computing instance, distributed processing solutions such as Spark can be substituted for this stage.
+
+### PostgreSQL
+
+Given the relatively small dataset (~2 GB, ~2.3 million rows, 145 columns), PostgreSQL is an appropriate relational database solution.
+Queries on datasets of this size range within the sub-second to minute range depending on commonly available RAM and query complexity.
+
+__Future Consideration__: if size of stored data starts to strain a standalone PostgreSQL setup, AWS Redshift may be an appropriate choice for storing large datasets using a relational model.
+Given large number of "empty" columns in `loan.csv` file, it may be appropriate to pursue a columnar solution such as Cassandra or HBase.
+These NoSQL solutions would be only appropriate if relational queries are limited and if other constraints (i.e., CAP theorem) are satisfied.
+
+### Airflow
+
+XX
+
+
+![Image of Pipeline](images/pipeline.png)
 
 ### Data Acquisition
 

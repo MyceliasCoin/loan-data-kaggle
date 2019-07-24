@@ -80,6 +80,8 @@ Note here that Florida bucks the trend as it has average state income (73k) clos
 
 The ETL data pipeline consists of multiple steps from storage of raw csv files to final write out into a database storage system.
 
+![Image of Pipeline](images/pipeline.png)
+
 ### Raw CSV
 
 Inputs to the pipeline are in the form of standalone csv files.
@@ -108,8 +110,6 @@ These NoSQL solutions would be only appropriate if relational queries are limite
 
 XX
 
-
-![Image of Pipeline](images/pipeline.png)
 
 ### Data Acquisition
 

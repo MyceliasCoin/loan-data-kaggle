@@ -86,7 +86,7 @@ Note here that Florida bucks the trend as it has average state income (73k) clos
 
 ---WILL REPLACE TEXT BELOW---
 
-Data is acquired by running JSON-RPC calls from a full Bitcoin Core node.
+Data is acquired by running JSON-RPC calls from a full Bitcoin Core node...
 
 Run `./json-rpc-pase-all-blocks.sh` in `/src/bash` directory to deserialize Bitcoin block data into JSON and write into dedicated AWS S3 bucket.
 This must be run from a full Bitcoin Core node with transaction indexing enabled (see [here](https://www.buildblockchain.tech/blog/btc-node-developers-guide) for setup instructions)

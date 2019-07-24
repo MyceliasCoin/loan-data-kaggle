@@ -1,3 +1,5 @@
+CREATE DATABASE loan_db;
+
 CREATE TABLE loans(
     id VARCHAR,
     member_id VARCHAR,
@@ -144,3 +146,5 @@ CREATE TABLE loans(
     settlement_percentage FLOAT (2),
     settlement_term SMALLINT
     );
+
+COPY loans FROM '/home/ubuntu/loan.csv' DELIMITER ',' CSV HEADER;

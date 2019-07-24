@@ -100,16 +100,19 @@ __Future Consideration__: if the size and number of new csv files exceeds memory
 ### PostgreSQL
 
 Given the relatively small dataset (~2 GB, ~2.3 million rows, 145 columns), PostgreSQL is an appropriate relational database solution.
-Queries on datasets of this size range within the sub-second to minute range depending on commonly available RAM and query complexity.
+Queries on datasets of this size range within the sub-second to second range, depending on available RAM and query complexity.
 
-__Future Consideration__: if size of stored data starts to strain a standalone PostgreSQL setup, AWS Redshift may be an appropriate choice for storing large datasets using a relational model.
-Given large number of "empty" columns in `loan.csv` file, it may be appropriate to pursue a columnar solution such as Cassandra or HBase.
-These NoSQL solutions would be only appropriate if relational queries are limited and if other constraints (i.e., CAP theorem) are satisfied.
+__Future Consideration__: if the size of stored data starts to strain a standalone PostgreSQL setup, AWS Redshift may be an appropriate choice for storing large amounts of data adhering to a relational model.
+However, given the large number of "empty" columns in the `loan.csv` file, it may also be wise to pursue a columnar solution such as Cassandra or HBase.
+These NoSQL solutions would only be appropriate if relational queries are limited and if other constraints are satisfied (i.e., consistency and availability in CAP theorem).
 
-### Airflow
+### Automated Updates
 
-XX
+This pipeline may receive periodic updates of the dataset over time, which will need to be processed in a robust and efficient way.
+We will leverage a daily Cron job to facilitate automated updates.
+The benefit of using Cron is that it is "out of the box" given it is built into Linux and is fairly reliable for simpler jobs.
 
+__Future Consideration__: if the pipeline needs to accommodate more complex workflows and dependencies when updating the data, it may be worthwhile to integrate Airflow as a task scheduler and workflow monitor.
 
 ### Data Acquisition
 

@@ -1,5 +1,6 @@
 # create empty loans table in PostgreSQL with appropriate datatypes and populate from loans.csv file
 import config
+import sys
 from sqlalchemy import create_engine
 
 
@@ -24,21 +25,18 @@ def create_loans_table(pg_engine):
     return True
 
 
-def populate_loans_table(pg_engine):
+def populate_loans_table(pg_engine, file_path):
     """
     Populates loans table in PostgreSQL
     :param pg_engine: PostgreSQL engine object
     :return: True
     """
-    # set loan csv file path
-    file = "../data/loan.csv"
-
     # define copy statement
     build_query = "COPY loans FROM STDIN DELIMITER ',' CSV HEADER"
 
     # leverage psycopg2 connection as context manager
     raw_con = pg_engine.raw_connection()
-    with open(file) as f, \
+    with open(file_path) as f, \
             raw_con.connection, \
             raw_con.cursor() as cursor:
         cursor.copy_expert(build_query, f)
@@ -52,4 +50,4 @@ if __name__ == "__main__":
     """
     loan_engine = create_db_engine()
     create_loans_table(loan_engine)
-    populate_loans_table(loan_engine)
+    populate_loans_table(loan_engine, sys.argv[1])

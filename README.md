@@ -113,6 +113,9 @@ __Future Consideration__: if the size of stored data starts to strain a standalo
 However, given the large number of "empty" columns in the `loan.csv` file, it may also be wise to pursue a columnar solution such as Cassandra or HBase.
 These NoSQL solutions would only be appropriate if relational queries are limited and if other constraints are satisfied (i.e., consistency and availability in CAP theorem).
 
+Current implementation stores all `loan.csv` data in a single table, but future schema may include multiple tables in a star schema format.
+This would be particularly important for columns that store values with list validation (i.e., can only take a restricted set of values).
+
 ### Automated Updates
 
 This pipeline may receive periodic updates of the dataset over time, which will need to be processed in a robust and efficient way.
@@ -178,6 +181,11 @@ Add the following line under the IPv4 section in that file:
 
 The PostgreSQL instance should now be setup and ready for remote connection.
 
+### Run Instructions
+
+Once PostgreSQL has been set up, we can create and populate the loan data from `loan.csv` by running the `./run.sh` file.
+
+Please note that python3 may need to be specified in the `run.sh` script depending on which interpreter is used.
 
 ## Directory Structure
  

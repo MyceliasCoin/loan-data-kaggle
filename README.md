@@ -106,7 +106,7 @@ Data schema and table creation / population statements can be found in the `src/
 However, `the build_db.py` file (executed in `run.sh` file) automatically creates and populates the `loans_db` database using the `loan.csv` file.
 
 Note that using the native COPY command in SQL drastically improves write performance when populating the `loans` table in PostgreSQL (<1 minute).
-Compare this to reading in the `loan.csv` file into a pandas DataFrame and writing that out to PostgreSQL using the df.to_sql() method (> 5 hours).
+Compare this to reading in the `loan.csv` file into a pandas DataFrame and writing that out to PostgreSQL using the `df.to_sql()` method (>5 hours).
 
 __Future Consideration__: if the size of stored data starts to strain a standalone PostgreSQL setup, AWS Redshift may be an appropriate choice for storing large amounts of data adhering to a relational model.
 However, given the large number of "empty" columns in the `loan.csv` file, it may also be wise to pursue a columnar solution such as Cassandra or HBase.

@@ -119,8 +119,11 @@ This would be particularly important for columns that store values with list val
 ### Automated Updates
 
 This pipeline may receive periodic updates of the dataset over time, which will need to be processed in a robust and efficient way.
-We will leverage a daily Cron job to facilitate automated updates.
+The general approach would be scheduling a Cron job to facilitate automated updates at consistent time intervals (i.e., daily, weekly).
+Logic would include checking the dedicated AWS S3 bucket for new csv files, which would then be appended to the existing PostgreSQL database.
 The benefit of using Cron is that it is "out of the box" given it is built into Linux and is fairly reliable for simpler jobs.
+
+Due to time constraints, automatic pipeline updates are not included in this submission.
 
 __Future Consideration__: if the pipeline needs to accommodate more complex workflows and dependencies when updating the data, it may be worthwhile to integrate Airflow as a task scheduler and workflow monitor.
 

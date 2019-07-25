@@ -102,6 +102,8 @@ __Future Consideration__: if the size and number of new csv files exceeds memory
 
 Given the relatively small dataset (~2 GB, ~2.3 million rows, 145 columns), PostgreSQL is an appropriate relational database solution.
 Queries on datasets of this size range within the sub-second to second range, depending on available RAM and query complexity.
+Data schema and table creation / population statements can be found in the `src/loan-schema.sql` file.
+However, `the build_db.py` file (executed in `run.sh` file) automatically creates and populates the `loans_db` database using the `loan.csv` file.
 
 __Future Consideration__: if the size of stored data starts to strain a standalone PostgreSQL setup, AWS Redshift may be an appropriate choice for storing large amounts of data adhering to a relational model.
 However, given the large number of "empty" columns in the `loan.csv` file, it may also be wise to pursue a columnar solution such as Cassandra or HBase.

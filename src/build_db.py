@@ -9,7 +9,6 @@ def create_db_engine():
     :return: PostgreSQL engine object
     """
     engine = create_engine(config.PG_CONFIG['PG_FORMAT'] + '://' + config.PG_CONFIG['PG_USER'] + ':' + config.PG_CONFIG['PG_PASSWORD'] + '@' + config.PG_CONFIG['PG_URL'] + ':' + config.PG_CONFIG['PG_PORT'] + '/' + config.PG_CONFIG['PG_DB'])
-    # engine = create_engine('postgres://postgres:postgres@ec2-3-83-202-20.compute-1.amazonaws.com:5432/loan_db')
     return engine
 
 

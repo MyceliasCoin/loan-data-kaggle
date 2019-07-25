@@ -105,6 +105,9 @@ Queries on datasets of this size range within the sub-second to second range, de
 Data schema and table creation / population statements can be found in the `src/loan-schema.sql` file.
 However, `the build_db.py` file (executed in `run.sh` file) automatically creates and populates the `loans_db` database using the `loan.csv` file.
 
+Note that using the native COPY command in SQL drastically improves write performance when populating the `loans` table in PostgreSQL (<1 minute).
+Compare this to reading in the `loan.csv` file into a pandas DataFrame and writing that out to PostgreSQL using the df.to_sql() method (> 5 hours).
+
 __Future Consideration__: if the size of stored data starts to strain a standalone PostgreSQL setup, AWS Redshift may be an appropriate choice for storing large amounts of data adhering to a relational model.
 However, given the large number of "empty" columns in the `loan.csv` file, it may also be wise to pursue a columnar solution such as Cassandra or HBase.
 These NoSQL solutions would only be appropriate if relational queries are limited and if other constraints are satisfied (i.e., consistency and availability in CAP theorem).
@@ -116,28 +119,6 @@ We will leverage a daily Cron job to facilitate automated updates.
 The benefit of using Cron is that it is "out of the box" given it is built into Linux and is fairly reliable for simpler jobs.
 
 __Future Consideration__: if the pipeline needs to accommodate more complex workflows and dependencies when updating the data, it may be worthwhile to integrate Airflow as a task scheduler and workflow monitor.
-
-### Data Acquisition
-
----WILL REPLACE TEXT BELOW---
-
-Data is acquired by running JSON-RPC calls from a full Bitcoin Core node...
-
-Run `./json-rpc-pase-all-blocks.sh` in `/src/bash` directory to deserialize Bitcoin block data into JSON and write into dedicated AWS S3 bucket.
-This must be run from a full Bitcoin Core node with transaction indexing enabled (see [here](https://www.buildblockchain.tech/blog/btc-node-developers-guide) for setup instructions)
-
-
-### Ingestion
-
----WILL REPLACE TEXT BELOW---
-
-BitWatch runs on top of a Spark cluster (one c5.large for master, three c5.2xlarge for workers) and a single PostgreSQL instance (one m4.large).
-
-Data is ingested with Spark from an S3 bucket that holds JSON files (one file for each blockchain block).
-
-Results are then written out to PostgreSQL in a tabular format in a `transactions` table (each row represents one transaction).
-
-(See Installation section below) Run `process-json.py` in `src/spark` directory using `spark-submit` command in PySpark to ingest JSON files from AWS S3 bucket.
 
 
 ## Installation

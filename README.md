@@ -12,6 +12,7 @@ For more information about Lending Club, please refer to the [wikipedia article]
 3. [Analysis](README.md#Analysis)
 4. [Architecture](README.md#Architecture)
 5. [Installation](README.md#Installation)
+6. [Directory Structure](README.md#Directory-Structure)
 
 ## Motivation
 
@@ -176,3 +177,25 @@ Add the following line under the IPv4 section in that file:
     host    <database>      <user>       0.0.0.0/0        md5
 
 The PostgreSQL instance should now be setup and ready for remote connection.
+
+
+## Directory Structure
+ 
+ ```
+├── README.md
+├── data
+|    ├── README.md
+|
+├── images
+│    ├── income-avg.png
+│    ├── loan-total.png
+│    ├── pipeline.png
+|
+├── src
+│    ├── buildDB.py
+│    ├── config.py
+│    ├── exploratoryAnalysis.ipynb
+│    ├── loanSchema.sql
+│    ├── updateDB.py
+│    ├── run.sh
+``` 

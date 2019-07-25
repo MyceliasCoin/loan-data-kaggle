@@ -183,6 +183,7 @@ The PostgreSQL instance should now be setup and ready for remote connection.
  
  ```
 ├── README.md
+|
 ├── data
 |    ├── README.md
 |

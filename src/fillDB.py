@@ -63,7 +63,6 @@ if __name__ == "__main__":
     loan_data = create_df(s3_obj)
     write_df_to_postgres(loan_data, engine)
 
-
 # engine = create_engine('postgres://postgres:postgres@ec2-3-83-202-20.compute-1.amazonaws.com:5432/loan_db')
 # con = engine.connect()
 #
